@@ -1,6 +1,7 @@
 // src/Api/couponApi.js
 import axios from "axios";
-const BASE_URL = "http://localhost:8000";
+// const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const createCouponAPI = async (couponData) => {
     const { data } = await axios.post(

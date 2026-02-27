@@ -1,6 +1,6 @@
 import axios from "axios"
 // const BASE_URL = "http://localhost:8000";
-export const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
+const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const createCatAPI = async (catData) => {
     // console.log(userData)

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000";
+// const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const getHeroAPI = async () => {
     const response = await axios.get(

@@ -1,5 +1,6 @@
 import axios from "axios"
-const BASE_URL = "http://localhost:8000";
+// const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const fetchRevenueStats = async () => {
     const { data } = await axios.get(`${BASE_URL}/stats/admin/revenue`);

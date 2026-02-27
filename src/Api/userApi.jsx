@@ -1,11 +1,11 @@
 import axios from "axios"
-const BASE_URL = "http://localhost:8000";
+// const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const registerAPI = async (userData) => {
     // console.log(userData)
     const response = await axios.post(
         `${BASE_URL}/user/register`,
-
         userData
         // fullname: userData?.fullname,
         // email: userData?.email,
