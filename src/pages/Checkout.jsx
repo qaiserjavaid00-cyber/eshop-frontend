@@ -594,39 +594,41 @@ export const Checkout = () => {
                 <div className="w-full md:w-1/2 border p-4 rounded-lg shadow-sm">
                     <h3 className="text-xl font-semibold mb-4">Shipping Address</h3>
 
+                    {/* Show checkbox if saved address exists */}
                     {address?.address && (
-                        <label className="flex gap-2 items-start mb-4">
+                        <label className="flex gap-2 items-start mb-4 cursor-pointer">
                             <input
                                 type="checkbox"
                                 checked={useSavedAddress}
                                 onChange={handleUseSavedAddress}
-                                className="mt-1 bg-black"
+                                className="mt-1 w-4 h-4"
                             />
                             <div className="border p-3 rounded-md bg-gray-50 w-full">
                                 <p className="font-medium mb-1">Use saved address</p>
-                                <div
-                                    className="text-sm prose"
-                                    dangerouslySetInnerHTML={{ __html: address.address }}
-                                />
+                                <p className="text-sm">{address.address}</p>
                             </div>
                         </label>
                     )}
 
-                    {/* ALWAYS show textarea, enable only if not using saved address */}
+                    {/* Textarea for entering a new address */}
                     <textarea
                         className="w-full border rounded-md p-2 min-h-[150px]"
                         placeholder="Enter your shipping address..."
                         value={addressContent}
                         onChange={(e) => setAddressContent(e.target.value)}
-                        disabled={useSavedAddress} // gray out if using saved
+                        disabled={useSavedAddress && address?.address} // editable only if not using saved address
                     />
+
+                    {/* Save button */}
                     <Button
                         onClick={handleSaveAddress}
                         className="w-full mt-3"
-                        disabled={savingAddress || useSavedAddress} // prevent saving if using saved
+                        disabled={savingAddress || (useSavedAddress && address?.address)}
                     >
                         {savingAddress ? "Saving..." : "Save Address"}
                     </Button>
+
+                    {/* Success message */}
                     {saveSuccess && <p className="text-green-600 mt-2 font-medium">{saveSuccess}</p>}
                 </div>
             </div>
