@@ -1,6 +1,7 @@
 // src/Api/cartApi.js
 import axios from "axios";
-const BASE_URL = "http://localhost:8000";
+// const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const saveCartAPI = async (cartData) => {
     const { data } = await axios.post(`${BASE_URL}/cart/create`, cartData,
