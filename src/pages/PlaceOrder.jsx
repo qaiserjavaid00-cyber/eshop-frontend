@@ -6,7 +6,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { clearCartItems } from "../redux/cartSlice";
-import AddressInput from "@/components/user/AddressInput";
+// import AddressInput from "@/components/user/AddressInput";
 
 export default function PlaceOrder() {
     const stripe = useStripe();
@@ -114,7 +114,7 @@ export default function PlaceOrder() {
     if (!shippingAddress) {
         return (
             <>
-                <AddressInput />
+
                 <div className="container mx-auto px-4 py-8 text-center">
                     <h1 className="text-2xl font-bold">Checkout</h1>
                     <p className="text-gray-500">
