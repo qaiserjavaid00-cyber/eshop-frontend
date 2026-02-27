@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getHomeProductsAPI } from "@/Api/productApi";
 import { useLocation } from "react-router-dom";
 
-export const useProducts = ({ search, color = [], size = [], category = [], subCategory = [], tags = [], specifications = {}, minPrice, maxPrice, sort, initialPage = 1, limit = 15, }) => {
+export const useProducts = ({ search, color = [], size = [], category = [], subCategory = [], brands=[] tags = [], specifications = {}, minPrice, maxPrice, sort, initialPage = 1, limit = 15, }) => {
 
     const location = useLocation();
     const params = new URLSearchParams(location.search);
@@ -25,7 +25,7 @@ export const useProducts = ({ search, color = [], size = [], category = [], subC
     } = useQuery({
         queryKey: [
             "products",
-            { page, search, color, size, category, subCategory, tags, specifications, minPrice, maxPrice, sort, limit },
+            { page, search, color, size, category, subCategory, brands, tags, specifications, minPrice, maxPrice, sort, limit },
         ],
         queryFn: () => {
             const payload = {
@@ -35,6 +35,7 @@ export const useProducts = ({ search, color = [], size = [], category = [], subC
                 size,
                 category,
                 subCategory,
+                brands,
                 tags,
                 minPrice,
                 maxPrice,

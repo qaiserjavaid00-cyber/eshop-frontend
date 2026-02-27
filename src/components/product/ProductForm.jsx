@@ -90,6 +90,7 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                 isFeatured: initialData?.isFeatured || false,
                 basePrice: initialData?.basePrice || "",
                 stock: initialData?.stock || "",
+                brand: initialData?.brand || "",
                 tags: initialData?.tags?.join(", ") || "",
                 specifications:
                     initialData?.specifications?.length > 0
@@ -109,6 +110,7 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                 basePrice: "",
                 stock: "",
                 tags: "",
+                brand:""
                 specifications: [{ key: "", value: "" }],
                 variants: [],
                 existingImages,
@@ -183,7 +185,8 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
         fd.append("title", data.title);
         fd.append("description", data.description);
         fd.append("category", data.category);
-        if (data.sub) fd.append("sub", data.sub);
+                if (data.sub) fd.append("sub", data.sub);
+                fd.append("brand", data.brand);
         fd.append("hasVariant", data.hasVariant);
         fd.append("isFeatured", data.isFeatured);
         fd.append("tags", JSON.stringify(tags));
@@ -292,7 +295,12 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                         <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>
                     )}
                 </div>
-
+ <div className="mb-2">
+                    <Input {...register("brand")} placeholder="Brand" className="border p-2 w-full" />
+                    {errors.brand && (
+                        <p className="text-red-500 text-sm mt-1">{errors.brand.message}</p>
+                    )}
+                </div>
                 <CategorySelector register={register} setValue={setValue} />
 
                 <h4 className="font-bold">Specifications</h4>

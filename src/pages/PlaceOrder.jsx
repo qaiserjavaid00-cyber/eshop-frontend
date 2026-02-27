@@ -54,6 +54,7 @@ export default function PlaceOrder() {
                     productId: buyNowItem.productId,
                     variantId: buyNowItem.variantId,
                     quantity: buyNowItem.quantity,
+                    price: buyNowItem.price,
                     couponCode: state?.couponCode,
                     shippingAddress,
                 },

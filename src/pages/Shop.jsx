@@ -21,6 +21,7 @@ import ColorFilter from '@/components/shop/ColorFilter';
 import ActiveFilters from '@/components/shop/ActiveFilters';
 import TagsFilter from '@/components/shop/TagsFilter';
 import SpecFilter from '@/components/shop/SpecsFilter';
+import BrandFilter from '@/components/shop/BrandFilter';
 
 
 export const Shop = () => {
@@ -40,6 +41,7 @@ export const Shop = () => {
     const selectedColors = params.getAll('color');
     const selectedSizes = params.getAll('size');
     const selectedTags = params.getAll('tags');
+    const selectedBrands = params.getAll('brand');
     const selectedCategories = params.getAll('category');
     const selectedSubCategories = params.getAll('subCategory');
     const minPrice = params.get('minPrice');
@@ -50,7 +52,7 @@ export const Shop = () => {
 
     /* ---------------- FILTER DATA (React Query) ---------------- */
     const { data: filterData, isLoading: filtersLoading, isError: filtersError, } = useProductFilters();
-    const { colors = [], sizes = [], categories = [], subCategories = [], tags = [], priceRange = { minPrice: 0, maxPrice: 0 }, } = filterData || {};
+    const { colors = [], sizes = [], categories = [], subCategories = [], brands=[], tags = [], priceRange = { minPrice: 0, maxPrice: 0 }, } = filterData || {};
 
     /////specifications from URL
     const selectedSpecifications = (() => {
@@ -96,6 +98,7 @@ export const Shop = () => {
         category: selectedCategories,
         subCategory: selectedSubCategories,
         tags: selectedTags,
+        brands:selectedBrands,
         specifications: selectedSpecifications,
         minPrice: minPrice ? Number(minPrice) : undefined,
         maxPrice: maxPrice ? Number(maxPrice) : undefined,
@@ -283,6 +286,13 @@ export const Shop = () => {
                                 commit: handlePriceCommit
                             }}
                         />
+
+                        {/* Brands */}
+                        <BrandFilter
+  brands={brands}
+  selectedBrands={selectedBrands}
+  onChange={handleCheckboxChange}
+/>
                         {/* Colors */}
                         <ColorFilter
                             colors={colors}

@@ -24,6 +24,7 @@ export const productFrontendSchema = z
             .max(2000, "Description is too long"),
 
         category: z.string().min(1, "Please select a category"),
+        brand: z.string().trim().min(1, "Brand required"),
 
         sub: z.string().optional(),
 
@@ -64,8 +65,7 @@ export const productFrontendSchema = z
 
                     size: z.string().trim().min(1, "Size required"),
                     color: z.string().trim().min(1, "Color required"),
-
-                    price: z.preprocess(
+                     price: z.preprocess(
                         numberOrUndefined,
                         z.number().positive("Price must be positive")
                     ),
