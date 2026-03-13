@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { updateProfile, updateStatus } from '../../redux/userSlice';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFrontendSchema } from '@/validation/userFrontendSchema';
+import { toast } from 'react-toastify';
 
 
 
@@ -42,7 +43,7 @@ export const Login = () => {
         mutate(formData, {
             onSuccess: (data) => {
                 console.log(data?.user?.isAdmin);
-                alert("Logged Innnn")
+                toast.succes("Wellcome to PulseTech")
                 dispatch(updateProfile(data?.user));
                 dispatch(updateStatus("authenticated"));
 

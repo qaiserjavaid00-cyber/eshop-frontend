@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerFrontendSchema } from '@/validation/userFrontendSchema';
+import { toast } from 'react-toastify';
 
 
 export const Register = () => {
@@ -18,9 +19,9 @@ export const Register = () => {
     const { mutate, isPending } = useMutation({
         mutationKey: ["user"],
         mutationFn: registerAPI,
-        onSuccess: () => { alert("Registered") },
+        onSuccess: () => { toast.success("Registered") },
         onError: (error) => {
-            alert(error?.response?.data?.message)
+            toast.error(error?.response?.data?.message)
             console.log(error)
         },
     });
