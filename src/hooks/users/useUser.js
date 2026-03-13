@@ -3,7 +3,7 @@ import {
     getProfile,
     updateProfile,
     updateProfilePicture,
-} from "@/api/userApi";
+} from "@/Api/userApi";
 import { toast } from "react-toastify";
 
 export const useUser = () => {
