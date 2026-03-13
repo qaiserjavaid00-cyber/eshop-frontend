@@ -43,10 +43,9 @@ export const Login = () => {
         mutate(formData, {
             onSuccess: (data) => {
                 console.log(data?.user?.isAdmin);
-                toast.succes("Wellcome to PulseTech")
+                toast.success("Wellcome to PulseTech")
                 dispatch(updateProfile(data?.user));
                 dispatch(updateStatus("authenticated"));
-
                 if (data?.user?.isAdmin) {
                     navigate("/admin/dash");
                 } else {
