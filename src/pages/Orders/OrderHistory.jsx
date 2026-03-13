@@ -52,9 +52,9 @@ export const OrderHistory = () => {
                 </div>
             ) : (
                 <div className="space-y-8">
-                    {orders.map((order) => (
+                    {orders?.map((order) => (
                         <div
-                            key={order._id}
+                            key={order?._id}
                             className="border rounded-2xl shadow-sm hover:shadow-md transition duration-300"
                         >
                             {/* Top Section */}
@@ -62,34 +62,34 @@ export const OrderHistory = () => {
                                 <div>
                                     <p className="text-sm text-gray-500">
                                         Order placed on{" "}
-                                        {moment(order.createdAt).format(
+                                        {moment(order?.createdAt).format(
                                             "MMMM Do YYYY, h:mm a"
                                         )}
                                     </p>
                                     <h3 className="text-lg font-semibold mt-1 break-all">
-                                        Order ID: {order._id}
+                                        Order ID: {order?._id}
                                     </h3>
                                 </div>
 
                                 <div className="flex items-center gap-4 mt-4 md:mt-0">
                                     {/* Status Badge */}
                                     <span
-                                        className={`px-4 py-1 text-sm rounded-full font-medium ${order.orderStatus === "Processing"
+                                        className={`px-4 py-1 text-sm rounded-full font-medium ${order?.orderStatus === "Processing"
                                             ? "bg-yellow-100 text-yellow-800"
-                                            : order.orderStatus === "Shipped"
+                                            : order?.orderStatus === "Shipped"
                                                 ? "bg-blue-100 text-blue-800"
-                                                : order.orderStatus === "Delivered"
+                                                : order?.orderStatus === "Delivered"
                                                     ? "bg-green-100 text-green-800"
                                                     : "bg-red-100 text-red-800"
                                             }`}
                                     >
-                                        {order.orderStatus}
+                                        {order?.orderStatus}
                                     </span>
 
                                     {/* Track Button */}
                                     <button
                                         onClick={() =>
-                                            navigate(`/order/${order._id}/track`)
+                                            navigate(`/order/${order?._id}/track`)
                                         }
                                         className="px-5 py-2 bg-black text-white rounded-lg text-sm hover:bg-gray-800 transition"
                                     >
@@ -117,22 +117,22 @@ export const OrderHistory = () => {
 
                                 {/* Products */}
                                 <div className="mt-6 space-y-4">
-                                    {order.products.map((item, idx) => (
+                                    {order?.products?.map((item, idx) => (
                                         <div
                                             key={idx}
                                             className="flex justify-between items-center  p-4 rounded-xl"
                                         >
                                             <div>
                                                 <h4 className="font-semibold">
-                                                    {item.product.title}
+                                                    {item?.product?.title}
                                                 </h4>
                                                 <p className="text-xs text-gray-500 mt-1">
-                                                    Color: {item.color} | Qty: {item.count}
+                                                    Color: {item?.color} | Qty: {item?.count}
                                                 </p>
                                             </div>
 
                                             <div className="text-sm font-semibold">
-                                                Rs. {item.price * item.count}
+                                                Rs. {item?.price * item?.count}
                                             </div>
                                         </div>
                                     ))}
