@@ -201,9 +201,7 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                             : typeof v.tags === "string"
                                 ? v.tags.split(",").map((t) => t.trim()).filter(Boolean)
                                 : [],
-                        // specifications: Array.isArray(v.specifications)
-                        //     ? v.specifications.filter(s => s?.key && s?.value)
-                        //     : [],
+
                         specifications: Array.isArray(v.specifications)
                             ? v.specifications
                                 .filter(s => s?.key && s?.value)
@@ -286,7 +284,9 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                 <CategorySelector
                     register={register}
                     setValue={setValue}
+                    watch={watch}
                     initialCategory={initialData?.category?._id}
+                    initialSub={initialData?.sub?._id}
                 />
 
                 <h4 className="font-bold">Specifications</h4>
