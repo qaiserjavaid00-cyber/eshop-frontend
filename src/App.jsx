@@ -1,49 +1,82 @@
 
 
-import { Route, Routes } from 'react-router-dom'
+import {
+  Route, Routes,
+  // useNavigate 
+} from 'react-router-dom'
 import './App.css'
-import { Login } from './pages/Login'
-import { Register } from './pages/Register'
-import { Profile } from './pages/Profile'
+import { Login } from './pages/User/Login'
+import { Register } from './pages/User/Register'
+import { Profile } from './pages/User/Profile'
 
 
-import { AdminDashboard } from './pages/AdminDashboard'
-import { AdminProducts } from './pages/AdminProducts'
-import { AdminProduct } from './pages/AdminProduct'
+import { AdminDashboard } from './pages/Admin/AdminDashboard'
+import { AdminProducts } from './pages/Admin/AdminProducts'
+import { AdminProduct } from './pages/Admin/AdminProduct'
 import Dashboard from './components/Dashboard'
-import { CreateCategory } from './pages/CreateCategory'
-import { SubCategory } from './pages/SubCategory'
-// import { FormExample } from './pages/FormExample'
+import { CreateCategory } from './pages/Admin/CreateCategory'
+import { SubCategory } from './pages/Admin/SubCategory'
 
-import { ProductUpdate } from './pages/ProductUpdate'
 import { Home } from './pages/Home'
-import { ProductDetails } from './pages/ProductDetails'
-import { Shop } from './pages/Shop'
+import { ProductDetails } from './pages/Products/ProductDetails'
+import { Shop } from './pages/Products/Shop'
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { CartScreen } from './pages/CartScreen'
-import { Checkout } from './pages/Checkout'
-import { Coupons } from './pages/Coupons'
-// import { Payment } from './pages/Payment'
-import { SuccessPage } from './pages/SuccessPage'
-import { OrderHistory } from './pages/OrderHistory'
-// import { Orders } from './pages/Orders'
-import { Wishlist } from './pages/Wishlist'
-import PlaceOrder from './pages/PlaceOrder'
-// import History from './components/user/History'
+import { CartScreen } from './pages/Cart/CartScreen'
+import { Checkout } from './pages/Cart/Checkout'
+import { Coupons } from './pages/Admin/Coupons'
+import { SuccessPage } from './pages/Orders/SuccessPage'
+import { OrderHistory } from './pages/Orders/OrderHistory'
+import { Wishlist } from './pages/User/Wishlist'
+import PlaceOrder from './pages/Orders/PlaceOrder'
 import UserDashboard from './components/user/UserDashboard'
-import UserStats from './components/user/UserStats'
 import Navbar from './components/layout/Navbar'
 import AuthRoute from './components/routes/AuthRoute'
 import ProtectedRoute from './components/routes/ProtectedRoute'
-import AdminHero from './components/admin/hero'
 import AdminOrdersTable from './components/admin/AdminOrdersTable'
+import HeroManagementPage from './pages/Admin/HeroManagementPage'
+import Footer from './components/layout/Footer'
+
+import 'react-toastify/dist/ReactToastify.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import 'leaflet/dist/leaflet.css';
+
+import { AdminNotifications } from './pages/Admin/AdminNotifications'
+import { NotificationBar } from './components/layout/NotificationBar'
+import AdminAbout from './pages/Admin/AdminAbout'
+import AboutPage from './pages/Admin/AboutPage'
+import { useCheckAuth } from './hooks/users/useAuth'
+import { TrackOrderPage } from './pages/Orders/TrackOrder'
+import Stats from './components/user/Stats'
+import { useDispatch } from 'react-redux'
+import { resetUser } from './redux/userSlice'
+import { useEffect } from 'react'
+import FAQPage from './pages/faqs'
+import ContactPage from './pages/ContactPage'
+import { ProductUpdate } from './pages/Admin/ProductUpdate'
+import Shipping from './pages/User/Shipping'
+import ScrollToTop from './components/layout/ScrollToTop'
 
 function App() {
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { data: authData, error } = useCheckAuth()
+
+  console.log("Auth Error", error)
+  console.log("Auth Data", authData)
+
+  useEffect(() => {
+    if (error) {
+      dispatch(resetUser())
+      // navigate("/login")
+    }
+  }, [error])
+
   return (
+
     <>
+      <ScrollToTop />
+      <NotificationBar />
       <Navbar />
       <Routes>
         <Route path="admin" element={
@@ -58,7 +91,9 @@ function App() {
           <Route path="cpn" element={<Coupons />} />
           <Route path="sub-cat" element={<SubCategory />} />
           <Route path="orders" element={<AdminOrdersTable />} />
-          <Route path="hero" element={<AdminHero />} />
+          <Route path="hero" element={<HeroManagementPage />} />
+          <Route path="notifications" element={<AdminNotifications />} />
+          <Route path="about" element={<AdminAbout />} />
           <Route path="products/edit/:id" element={<ProductUpdate />} />
         </Route>
 
@@ -67,9 +102,9 @@ function App() {
             <UserDashboard />
           </ProtectedRoute>
         }>
+          <Route path="dashboard" element={<Stats />} />
           <Route path="history" element={<OrderHistory />} />
           <Route path="wishlist" element={<Wishlist />} />
-          <Route path="dashboard" element={<UserStats />} />
           <Route path="profile" element={<Profile />} />
         </Route>
 
@@ -78,7 +113,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/:slug" element={<ProductDetails />} />
         <Route path="/shop" element={<Shop />} />
-
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/faqs" element={<FAQPage />} />
+        <Route path="/contact" element={<ContactPage />} />
 
         <Route path="/cart" element={
           // <ProtectedRoute>
@@ -96,15 +133,26 @@ function App() {
             <PlaceOrder />
           </ProtectedRoute>
         } />
+        <Route path="/shipping" element={
+          <ProtectedRoute>
+            <Shipping />
+          </ProtectedRoute>
+        } />
         <Route path="/order/success/:orderId" element={
           <ProtectedRoute>
             <SuccessPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/order/:orderId/track" element={
+          <ProtectedRoute>
+            <TrackOrderPage />
           </ProtectedRoute>
         } />
 
       </Routes>
 
       <ToastContainer position="top-right" />
+      <Footer />
     </>
   )
 }

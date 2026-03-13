@@ -19,26 +19,6 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
     const [tags, setTags] = useState(initialData?.tags || []);
     const [existingImages, setExistingImages] = useState(initialData?.images || []);
     const [newImages, setNewImages] = useState([]);
-    ///v1
-    // const mergedVariants = isEdit
-    //     ? initialVariants.length
-    //         ? initialVariants
-    //         : initialData?.variants || []
-    //     : [];
-    ////v2
-    // const mergedVariants = isEdit
-    //     ? (initialVariants.length
-    //         ? initialVariants
-    //         : initialData?.variants || []
-    //     ).map(v => ({
-    //         ...v,
-    //         specifications:
-    //             v.specifications && v.specifications.length > 0
-    //                 ? v.specifications
-    //                 : [{ key: "", value: "" }],
-    //     }))
-    //     : [];
-    ///v3
     const mergedVariants = isEdit && initialData?.hasVariant
         ? (initialVariants.length
             ? initialVariants
@@ -132,23 +112,6 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
         remove: removeVariant,
     } = useFieldArray({ control, name: "variants" });
 
-    // ✅ Append default variant immediately on mount if empty
-    // useEffect(() => {
-    //     if (hasVariant && (!variants || variants.length === 0)) {
-    //         addVariant({
-    //             size: "",
-    //             color: "Silver",
-    //             price: 1,
-    //             quantity: 0,
-    //             tags: [],
-    //             specifications: [{ key: "", value: "" }],
-    //             isFlashDeal: false,
-    //             isOnSale: false,
-    //             images: [],
-    //         });
-    //     }
-    // }, [addVariant, hasVariant, variants]);
-
     // Make RHF aware of image states
     useEffect(() => {
         setValue("existingImages", existingImages, { shouldValidate: true });
@@ -158,7 +121,7 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
         setValue("newImages", newImages, { shouldValidate: true });
     }, [newImages, setValue]);
 
-    // ✅ Sync variant images after variants exist
+    //  Sync variant images after variants exist
     useEffect(() => {
         variants.forEach((v, idx) => {
             if (variantImagesPreview[idx]) {
@@ -181,18 +144,31 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
     const onSubmit = (data) => {
         console.log("Submitted variants:", data.variants);
         const fd = new FormData();
+        console.log("SUB VALUE:", data.sub);
         // console.log("Existing Images state before submit:", existingImages);
         fd.append("title", data.title);
         fd.append("description", data.description);
         fd.append("category", data.category);
-        if (data.sub) fd.append("sub", data.sub);
+        fd.append("sub", data.sub || "");
         fd.append("brand", data.brand);
         fd.append("hasVariant", data.hasVariant);
         fd.append("isFeatured", data.isFeatured);
         fd.append("tags", JSON.stringify(tags));
+        // fd.append(
+        //     "specifications",
+        //     JSON.stringify(data.specifications.filter((s) => s.key && s.value))
+        // );
+
         fd.append(
             "specifications",
-            JSON.stringify(data.specifications.filter((s) => s.key && s.value))
+            JSON.stringify(
+                data.specifications
+                    .filter((s) => s.key && s.value)
+                    .map((s) => ({
+                        key: s.key.trim().toUpperCase(),
+                        value: s.value
+                    }))
+            )
         );
 
         if (!data.hasVariant) {
@@ -225,9 +201,17 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                             : typeof v.tags === "string"
                                 ? v.tags.split(",").map((t) => t.trim()).filter(Boolean)
                                 : [],
+                        // specifications: Array.isArray(v.specifications)
+                        //     ? v.specifications.filter(s => s?.key && s?.value)
+                        //     : [],
                         specifications: Array.isArray(v.specifications)
-                            ? v.specifications.filter(s => s?.key && s?.value)
-                            : [],
+                            ? v.specifications
+                                .filter(s => s?.key && s?.value)
+                                .map(s => ({
+                                    key: s.key.trim().toUpperCase(),
+                                    value: s.value
+                                }))
+                            : []
                     }))
                 )
             );
@@ -247,9 +231,7 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                     fd.append(`variantImages_${idx}`, file);
                 });
             });
-
         }
-
         mutate(fd);
     };
 
@@ -296,12 +278,16 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                     )}
                 </div>
                 <div className="mb-2">
-                    <Input {...register("brand")} placeholder="Brand" className="border p-2 w-full" />
+                    <Input {...register("brand")} placeholder="Brand" className="border p-2 w-full uppercase" />
                     {errors.brand && (
                         <p className="text-red-500 text-sm mt-1">{errors.brand.message}</p>
                     )}
                 </div>
-                <CategorySelector register={register} setValue={setValue} />
+                <CategorySelector
+                    register={register}
+                    setValue={setValue}
+                    initialCategory={initialData?.category?._id}
+                />
 
                 <h4 className="font-bold">Specifications</h4>
                 {
@@ -309,7 +295,7 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                         <div key={f.id} className="flex gap-2">
                             <input
                                 {...register(`specifications.${i}.key`)}
-                                className="border p-2 w-1/2"
+                                className="border p-2 w-1/2 uppercase"
                             />
                             {errors.specifications?.[i]?.key && (
                                 <p className="text-red-500 text-sm">{errors.specifications[i].key.message}</p>

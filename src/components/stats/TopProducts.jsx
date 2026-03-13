@@ -8,8 +8,8 @@ const TopProducts = () => {
     if (isError) return <p>Error: {error.message}</p>;
 
     return (
-        <section className="p-4 bg-white rounded shadow">
-            <h2 className="text-xl font-bold mb-4">🏆 Top Products</h2>
+        <section className="p-4 rounded shadow">
+            <h2 className="text-xl font-bold mb-4 text-orange-600">🏆 Top Products</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {data?.map((product) => (
                     <div
@@ -23,10 +23,10 @@ const TopProducts = () => {
                         />
                         <div>
                             <h3 className="font-semibold">{product?.title}</h3>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm dark:text-gray-300">
                                 Sold: <span className="font-bold">{product?.totalSold}</span>
                             </p>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm dark:text-gray-300">
                                 Revenue: <span className="font-bold">${product?.totalRevenue}</span>
                             </p>
                         </div>

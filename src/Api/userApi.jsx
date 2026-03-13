@@ -3,43 +3,39 @@ import axios from "axios"
 const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const registerAPI = async (userData) => {
-    // console.log(userData)
+
     const response = await axios.post(
         `${BASE_URL}/user/register`,
-        userData
-        // fullname: userData?.fullname,
-        // email: userData?.email,
-        // password: userData?.password,
-        ,
+        userData,
         {
             withCredentials: true,
         }
     );
-    console.log(response.data)
+
     return response.data;
 
 }
 
 export const loginAPI = async (userData) => {
-    // console.log(userData)
+
     const response = await axios.post(
         `${BASE_URL}/user/login`, userData,
         {
             withCredentials: true,
         }
     );
-    console.log(response.data)
+
     return response.data;
 
 }
 export const loginOutAPI = async () => {
-    // console.log(userData)
+
     const response = await axios.post(`${BASE_URL}/user/logout`, {},
         {
             withCredentials: true,
         }
     );
-    console.log(response.data)
+
     return response.data;
 
 }
@@ -91,3 +87,39 @@ export const removeFromWishlistAPI = async (productId) => {
     return data;
 };
 
+
+export const subscribeUser = async (email) => {
+    const { data } = await axios.post(`${BASE_URL}/subscribe`, { email });
+    return data;
+};
+
+export const getUserStatsAPI = async () => {
+    const { data } = await axios.get(`${BASE_URL}/user/stats`, {
+        withCredentials: true,
+    });
+    return data;
+};
+
+export const getProfile = async () => {
+    const { data } = await axios.get(`${BASE_URL}/user/profile`, {
+        withCredentials: true,
+    });
+    return data.user;
+};
+
+export const updateProfile = async (payload) => {
+    const { data } = await axios.put(`${BASE_URL}/user/profile`, payload, {
+        withCredentials: true,
+    });
+    return data.user;
+};
+
+export const updateProfilePicture = async (file) => {
+    const formData = new FormData();
+    formData.append("profilePic", file);
+
+    const { data } = await axios.put(`${BASE_URL}/user/profile/picture`, formData, {
+        withCredentials: true,
+    });
+    return data;
+};

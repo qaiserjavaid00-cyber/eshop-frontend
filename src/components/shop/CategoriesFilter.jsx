@@ -10,8 +10,7 @@ const CategoryFilter = ({
 }) => {
     const [showCats, setShowCats] = useState(true);
     const [expandedCategories, setExpandedCategories] = useState({});
-    console.log("CATEGORIES:", categories);
-    console.log("SUBCATEGORIES:", subCategories);
+
     const toggleCategory = (catId) => {
         setExpandedCategories((prev) => ({
             ...prev,
@@ -19,7 +18,6 @@ const CategoryFilter = ({
         }));
     };
 
-    // Optional: auto expand selected categories
     useEffect(() => {
         const autoExpand = {};
         selectedCategories.forEach((id) => {

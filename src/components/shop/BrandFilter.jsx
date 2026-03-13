@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 
-export const BrandFilter = ({ brands=[], selectedBrands=[], onChange }) => {
-
+export const BrandFilter = ({ brands = [], selectedBrands = [], onChange }) => {
+  const [open, setOpen] = useState(true)
   return (
     <div className="mb-4">
-        <div
-                className="cursor-pointer font-bold py-3 flex justify-between"
-                onClick={() => setOpen(!open)}
-            >
-                Brand <BsChevronDown />
-            </div>
-      
+      <div
+        className="cursor-pointer font-bold py-3 flex justify-between"
+        onClick={() => setOpen(!open)}
+      >
+        Brand <BsChevronDown />
+      </div>
+
       {open && <div className="flex flex-col gap-1">
         {brands.map((brand) => (
           <label key={brand} className="flex items-center gap-2 text-sm">

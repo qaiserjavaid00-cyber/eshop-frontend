@@ -4,9 +4,16 @@ import { z } from "zod";
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
+// const numberOrUndefined = (val) => {
+//     if (val === "" || val === null || val === undefined) return undefined;
+//     return Number(val);
+// };
+
 const numberOrUndefined = (val) => {
     if (val === "" || val === null || val === undefined) return undefined;
-    return Number(val);
+
+    const parsed = Number(val);
+    return Number.isNaN(parsed) ? undefined : parsed;
 };
 
 export const productFrontendSchema = z
@@ -65,7 +72,7 @@ export const productFrontendSchema = z
 
                     size: z.string().trim().min(1, "Size required"),
                     color: z.string().trim().min(1, "Color required"),
-                     price: z.preprocess(
+                    price: z.preprocess(
                         numberOrUndefined,
                         z.number().positive("Price must be positive")
                     ),

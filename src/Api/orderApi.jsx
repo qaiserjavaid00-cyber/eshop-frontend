@@ -11,6 +11,13 @@ export const getAllOrdersAPI = async ({ queryKey }) => {
     return data;
 };
 
+export const getOrderByIdAPI = async ({ orderId }) => {
+
+    const { data } = await axios.get(`${BASE_URL}/order/${orderId}`, {
+        withCredentials: true,
+    });
+    return data;
+};
 
 export const refundOrderAPI = async ({ orderId }) => {
     const { data } = await axios.post(
@@ -44,7 +51,14 @@ export const updateOrderStatusAPI = async ({ orderId, status }) => {
     return data;
 };
 
-
+export const updateCODStatusAPI = async (orderId) => {
+    const { data } = await axios.put(
+        `${BASE_URL}/order/update-cod/${orderId}`,
+        {},
+        { withCredentials: true }
+    );
+    return data;
+};
 
 export const getUsersOrdersAPI = async ({ queryKey }) => {
     // const [page, limit] = queryKey;
@@ -55,3 +69,9 @@ export const getUsersOrdersAPI = async ({ queryKey }) => {
 };
 
 
+export const placeCODOrderAPI = async (cartData) => {
+    const { data } = await axios.post(`${BASE_URL}/order/cod`, cartData, {
+        withCredentials: true,
+    });
+    return data;
+};

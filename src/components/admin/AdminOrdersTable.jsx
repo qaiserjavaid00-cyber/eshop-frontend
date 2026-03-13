@@ -166,7 +166,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 
-import TableSkeleton from "../user/TableSkeleton";
 import RefundModal from "./refundModal";
 import { DataTable } from "../data-table";
 import { getOrderColumns } from "./columns";
@@ -175,6 +174,8 @@ import { useAllOrders } from "@/hooks/orders/useAllOrders";
 import { useUpdateOrderStatus } from "@/hooks/orders/useUpdateOrderStatus";
 import { useRefundOrder } from "@/hooks/orders/useRefundOrder";
 import { usePartialRefundOrder } from "@/hooks/orders/usePartialRefundOrders";
+import { SkeletonTable } from "../product/skeletons/SkeletonTable";
+import { useUpdateCODStatus } from "@/hooks/orders/useCODOrder";
 
 const AdminOrdersTable = () => {
     const [refundModalOpen, setRefundModalOpen] = useState(false);
@@ -184,7 +185,7 @@ const AdminOrdersTable = () => {
     const { mutate: updateStatus } = useUpdateOrderStatus();
     const { mutate: refundOrder, isSuccess: refundSuccess } = useRefundOrder();
     const { mutate: partialRefundOrder } = usePartialRefundOrder();
-
+    const { mutate: updateCODStatus } = useUpdateCODStatus();
     useEffect(() => {
         if (refundSuccess && selectedOrder) {
             toast.success(
@@ -199,6 +200,14 @@ const AdminOrdersTable = () => {
             setRefundModalOpen(true);
             return;
         }
+        if (newStatus === "Cash on Delivery" && !order.isPaid) {
+            updateCODStatus(orderId, {
+                onSuccess: () => {
+                    updateStatus({ orderId, status: newStatus });
+                }
+            });
+            updateStatus({ orderId, status: newStatus });
+        }
         updateStatus({ orderId, status: newStatus });
     };
 
@@ -207,7 +216,7 @@ const AdminOrdersTable = () => {
         []
     );
 
-    if (isLoading) return <TableSkeleton />;
+    if (isLoading) return <SkeletonTable columns={columns} rows={10} />;
     if (isError) return <p>{error?.message}</p>;
 
     return (
@@ -216,7 +225,7 @@ const AdminOrdersTable = () => {
                 All Orders (Admin)
             </h1>
 
-            <DataTable columns={columns} data={orders} />
+            <DataTable columns={columns} data={orders} placeholder="Search Orders..." />
 
             <RefundModal
                 open={refundModalOpen}

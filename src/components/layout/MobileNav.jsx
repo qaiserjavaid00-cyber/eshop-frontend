@@ -14,7 +14,7 @@ export default function MobileNav() {
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 {/* Logo */}
                 <h1 className="text-xl font-bold">
-                    <span className="text-orange-600">Basic</span>Store
+                    <span className="text-orange-600">Pulse</span>Tech
                 </h1>
 
                 {/* Right side icons */}
@@ -34,21 +34,27 @@ export default function MobileNav() {
             </div>
 
             {/* Mobile Nav Menu */}
+            <div>Mobile</div>
             {open && (
-                <nav className="bg-white border-t shadow-md">
-                    <ul className="flex flex-col px-4 py-4 space-y-3">
+                <nav className="border-t shadow-md">
+                    <ul className="flex flex-col px-4 py-4 space-y-3  ">
                         <li>
-                            <Link to="/" className="text-gray-800 font-medium block" onClick={() => setOpen(false)}>
+                            <Link to="/" className="font-medium block" onClick={() => setOpen(false)}>
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link to="/products" className="text-gray-800 font-medium block" onClick={() => setOpen(false)}>
+                            <Link to="/products" className="font-medium block" onClick={() => setOpen(false)}>
                                 Products
                             </Link>
                         </li>
                         <li>
-                            <Link to="/contact" className="text-gray-800 font-medium block" onClick={() => setOpen(false)}>
+                            <Link to="/about" className="font-medium block" onClick={() => setOpen(false)}>
+                                About
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/contact" className="font-medium block" onClick={() => setOpen(false)}>
                                 Contact
                             </Link>
                         </li>

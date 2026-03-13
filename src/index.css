@@ -30,6 +30,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem
   }
+
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 60 9.1% 97.8%;
@@ -62,7 +63,28 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Slick dots container */
+.slick-dots {
+  @apply flex justify-center mt-6;
+}
+
+/* Hide default dot */
+.slick-dots li button:before {
+  content: "";
+}
+
+/* Custom dot */
+.slick-dots li button {
+  @apply w-3 h-3 rounded-full bg-gray-300 transition-all duration-300;
+}
+
+/* Active dot */
+.slick-dots li.slick-active button {
+  @apply bg-gray-300 scale-90;
 }

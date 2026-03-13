@@ -28,7 +28,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function DataTable({ columns, data }) {
+export function DataTable({ columns, data, placeholder }) {
     const [sorting, setSorting] = React.useState([]);
     const [columnFilters, setColumnFilters] = React.useState([]);
     const [columnVisibility, setColumnVisibility] = React.useState({});
@@ -59,7 +59,7 @@ export function DataTable({ columns, data }) {
             {/* Search + Column Toggle */}
             <div className="flex items-center justify-between">
                 <Input
-                    placeholder="Search orders..."
+                    placeholder={placeholder}
                     value={globalFilter ?? ""}
                     onChange={(e) => setGlobalFilter(e.target.value)}
                     className="max-w-sm"

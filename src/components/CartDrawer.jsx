@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 export const CartDrawer = ({ isOpen, onClose }) => {
-    const cartItems = useSelector(state => state.cart.cartItems);
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed top-0 right-0 w-80 h-full bg-white shadow-lg z-50 border-l border-gray-300 p-4">
+        <div className="fixed top-0 right-0 w-80 h-full bg-white dark:bg-black shadow-lg z-50 border-l border-gray-300 p-4">
             <div className="flex justify-between items-center border-b pb-2 mb-2">
                 <h2 className="text-lg font-semibold">Cart</h2>
                 <button onClick={onClose} className="text-red-500 text-xl font-bold">×</button>
@@ -16,11 +17,10 @@ export const CartDrawer = ({ isOpen, onClose }) => {
                 {cartItems.length === 0 ? (
                     <p>Your cart is empty.</p>
                 ) : (
-                    cartItems.map((item, idx) => (
+                    cartItems?.map((item, idx) => (
                         <div key={idx} className="border-b py-2">
+                            <img src={item.image} alt={item.title} className='h-24 w-56' />
                             <p className="font-medium">{item.title}</p>
-
-                            <img src={item.images[0]} alt={item.title} className='h-24 w-56' />
                         </div>
                     ))
                 )}

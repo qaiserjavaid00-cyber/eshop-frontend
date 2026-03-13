@@ -3,14 +3,14 @@ import axios from "axios"
 const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const createProductAPI = async (proData) => {
-    // console.log(userData)
+
     const response = await axios.post(
         `${BASE_URL}/product/create`, proData,
         {
             withCredentials: true,
         }
     );
-    // console.log(response.data)
+
     return response.data;
 
 }
@@ -20,49 +20,29 @@ export const createProductAPI = async (proData) => {
 //////get alll ptroducst
 
 export const getAllproductsAPI = async () => {
-    // console.log(userData)
+
     const response = await axios.get(`${BASE_URL}/product/list`,
         {
             withCredentials: true,
         }
     );
-    // console.log(response.data)
+
     return response.data;
 
 }
 
 
 export const getProductFiltersAPI = async () => {
-    // console.log(userData)
+
     const response = await axios.get(`${BASE_URL}/product/filters`,
         {
             withCredentials: true,
         }
     );
-    // console.log(response.data)
+
     return response.data;
 
 }
-/// Home products
-
-// export const getHomeProductsAPI = async (filters) => {
-//     console.log("my filters", filters)
-//     const response = await axios.get(`${BASE_URL}/product/products`,
-//         {
-//             params: filters,
-//             withCredentials: true,
-//         }
-//     );
-//     console.log(response.data)
-//     return response.data;
-
-// }
-
-
-///home products api chatGPT
-
-// Api/productApi.js
-
 
 export const getHomeProductsAPI = async (filters = {}) => {
     const params = new URLSearchParams();
@@ -105,14 +85,13 @@ export const fetchSalesProductsAPI = async () => {
 
 
 export const deleteProductAPI = async (catID) => {
-    // console.log(userData)
     const response = await axios.delete(
         `${BASE_URL}/product/${catID}`,
         {
             withCredentials: true,
         }
     );
-    // console.log(response.data)
+
     return response.data;
 
 }
@@ -127,12 +106,12 @@ export const getProductAPI = async (id) => {
             withCredentials: true,
         }
     );
-    // console.log(response.data)
+
     return response.data;
 
 }
 
-///get single product via slug
+///update product
 
 export const updateProductAPI = async (id, formData) => {
     console.log("Product ID", id)
@@ -143,7 +122,7 @@ export const updateProductAPI = async (id, formData) => {
             withCredentials: true,
         }
     );
-    // console.log(response.data)
+
     return response.data;
 
 }

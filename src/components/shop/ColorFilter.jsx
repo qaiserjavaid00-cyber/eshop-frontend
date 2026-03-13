@@ -33,8 +33,8 @@ const ColorFilter = ({ colors = [], selectedColors = [], onChange }) => {
                                 key={color}
                                 onClick={() => onChange("color", color)}
                                 className={`w-8 h-8 rounded-lg border-2 cursor-pointer transition-all duration-200 ${isSelected
-                                        ? "ring-2 ring-offset-2 ring-blue-500 animate-pulse"
-                                        : "border-gray-400 ring-offset-1 hover:ring-2 ring-blue-300"
+                                    ? "ring-2 ring-offset-2 ring-blue-500"
+                                    : "border-gray-400 ring-offset-1 hover:ring-2 ring-blue-300"
                                     }`}
                                 style={{ backgroundColor }}
                                 title={color}

@@ -5,6 +5,9 @@ const ActiveFilters = ({
     selectedSubCategories = [],
     selectedColors = [],
     selectedSizes = [],
+    selectedBrands = [],
+    selectedTags = [],
+    selectedSpecifications = {},
     priceRange = [0, 0],
     categories = [],
     subCategories = [],
@@ -64,6 +67,28 @@ const ActiveFilters = ({
                 </span>
             ))}
 
+            {/* Brands */}
+            {selectedBrands.map((brand) => (
+                <span
+                    key={brand}
+                    className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full cursor-pointer flex items-center gap-1"
+                    onClick={() => onRemoveFilter("brand", brand)}
+                >
+                    {brand} ✕
+                </span>
+            ))}
+
+            {/* Tags */}
+            {selectedTags.map((tag) => (
+                <span
+                    key={tag}
+                    className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full cursor-pointer flex items-center gap-1"
+                    onClick={() => onRemoveFilter("tags", tag)}
+                >
+                    {tag} ✕
+                </span>
+            ))}
+
             {/* Price */}
             {priceRange && (
                 <span
@@ -72,6 +97,24 @@ const ActiveFilters = ({
                 >
                     ${priceRange[0]} - ${priceRange[1]} ✕
                 </span>
+            )}
+
+            {/* Specifications */}
+            {Object.entries(selectedSpecifications).map(([specKey, values]) =>
+                values.map((value) => (
+                    <span
+                        key={`${specKey}-${value}`}
+                        className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full cursor-pointer flex items-center gap-1"
+                        onClick={() =>
+                            onRemoveFilter("specifications", {
+                                specKey,
+                                specValue: value,
+                            })
+                        }
+                    >
+                        {value} ✕
+                    </span>
+                ))
             )}
         </div>
     );

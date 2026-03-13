@@ -9,7 +9,7 @@ const AuthRoute = ({ children }) => {
 
     if (admin) { return children }
 
-    // return <Navigate to="/login" />;
+    
     return <div>
         <div className='flex h-screen items-center justify-center font-bold text-orange-600 text-5xl'><Ban size={70} /> Unauthorized: Admin Only</div>
     </div>

@@ -51,7 +51,7 @@ export const ShopPagination = ({
                             className={cn(
                                 baseButton,
                                 button,
-                                "bg-gray-100 hover:bg-gray-200",
+                                "",
                                 buttonClassName
                             )}
                         >
@@ -68,9 +68,7 @@ export const ShopPagination = ({
                                 className={cn(
                                     baseButton,
                                     button,
-                                    p === currentPage
-                                        ? "bg-gray-600 text-white"
-                                        : "bg-white text-gray-600 hover:bg-gray-100",
+
                                     buttonClassName
                                 )}
                             >
@@ -87,7 +85,7 @@ export const ShopPagination = ({
                             className={cn(
                                 baseButton,
                                 button,
-                                "bg-gray-100 hover:bg-gray-200",
+
                                 buttonClassName
                             )}
                         >

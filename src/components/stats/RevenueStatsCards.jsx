@@ -10,15 +10,15 @@ const RevenueStatCard = () => {
     const isPositive = revenue?.changePercent >= 0;
 
     return (
-        <div className="bg-white rounded-xl shadow-md p-6 w-full">
+        <div className="bg-white rounded-xl shadow-md p-6 w-full dark:bg-background">
             <p className="text-sm text-gray-500">Total Revenue</p>
-            <h2 className="text-3xl font-bold text-gray-900 mt-1">
+            <h2 className="text-3xl font-bold mt-1">
                 ${revenue?.total.toLocaleString()}
             </h2>
             <div className="flex items-center justify-between mt-4">
                 <div>
                     <p className="text-xs text-gray-400">This Month</p>
-                    <p className="text-lg font-semibold text-gray-800">
+                    <p className="text-lg font-semibold">
                         ${revenue?.thisMonth.toLocaleString()}
                     </p>
                 </div>

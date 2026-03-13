@@ -13,17 +13,12 @@ export const saveCartAPI = async (cartData) => {
 };
 
 
-// src/Api/cartApi.js
-
-
 export const getUserCartAPI = async () => {
     const { data } = await axios.get(`${BASE_URL}/cart/mycart`, {
         withCredentials: true, // include cookies if using JWT with httpOnly cookies
     });
     return data;
 };
-
-// src/Api/cartApi.js
 
 
 export const emptyCartAPI = async () => {
@@ -32,3 +27,4 @@ export const emptyCartAPI = async () => {
     });
     return response.data;
 };
+

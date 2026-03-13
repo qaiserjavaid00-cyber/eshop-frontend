@@ -6,8 +6,6 @@ export const BestSeller = () => {
 
     const { products, isLoading, isError, error, } = useProducts({ sort: "bestSeller", limit: 8 })
 
-    console.log("products from hook", products)
-
     if (isLoading) {
         return (
             <>

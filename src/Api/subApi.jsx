@@ -3,7 +3,7 @@ import axios from "axios"
 const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const createSubAPI = async (subData) => {
-    // console.log(userData)
+
     const response = await axios.post(
         `${BASE_URL}/sub/create`, subData,
         {
@@ -16,7 +16,7 @@ export const createSubAPI = async (subData) => {
 }
 
 export const getAllsubsAPI = async () => {
-    // console.log(userData)
+
     const response = await axios.get(`${BASE_URL}/sub/list`,
         {
             withCredentials: true,
@@ -28,7 +28,7 @@ export const getAllsubsAPI = async () => {
 }
 
 export const deleteSubAPI = async (subID) => {
-    // console.log(userData)
+
     const response = await axios.delete(
         `${BASE_URL}/sub/${subID}`,
         {
@@ -42,7 +42,7 @@ export const deleteSubAPI = async (subID) => {
 
 
 export const getSingleSubAPI = async (parentID) => {
-    // console.log(userData)
+
     const response = await axios.get(
         `${BASE_URL}/sub/${parentID}`,
         {

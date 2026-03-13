@@ -34,7 +34,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <div className='bg-gray-100 h-12 w-full flex justify-between shadow-lg items-center px-2 font-mono sticky top-0 z-10'>
+            <div className='bg-gray-100 h-12 w-full flex justify-between shadow-lg items-center px-2 font-mono sticky top-0 z-60'>
                 <div className='flex gap-12'>
                     <div className='flex justify-center items-center gap-2'>
                         <FaHome />

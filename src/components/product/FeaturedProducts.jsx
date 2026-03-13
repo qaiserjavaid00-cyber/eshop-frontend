@@ -57,18 +57,18 @@ const FeaturedProductsSlider = () => {
                     1280: { slidesPerView: 5 },
                 }}
             >
-                {data.map((product) => (
-                    <SwiperSlide key={product._id}>
+                {Array.isArray(data) && data?.map((product) => (
+                    <SwiperSlide key={product?._id}>
                         <div className="card p-4 border rounded shadow-sm">
-                            <Link to={`/${product.slug}`}>
+                            <Link to={`/${product?.slug}`}>
                                 <img
-                                    src={product.images?.[0]}
-                                    alt={product.title}
+                                    src={product?.images?.[0]}
+                                    alt={product?.title}
                                     className="w-full h-48 object-cover rounded"
                                 />
                             </Link>
                             <h3 className="mt-2 font-semibold">{product?.title}</h3>
-                            <p className="text-orange-600 mt-1">From ${product?.minPrice || product?.basePrice}</p>
+                            <p className="text-orange-600 mt-1">From ${product?.minPrice}</p>
                         </div>
                     </SwiperSlide>
                 ))}

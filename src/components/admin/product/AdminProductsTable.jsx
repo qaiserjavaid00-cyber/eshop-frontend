@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { deleteProductAPI, getAllproductsAPI } from "@/Api/productApi";
 import { DataTable } from "@/components/data-table";
 import { getProductColumns } from "./column";
+import { SkeletonTable } from "@/components/product/skeletons/SkeletonTable";
 
 const AdminProductsTable = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const AdminProductsTable = () => {
         queryKey: ["products"],
         queryFn: getAllproductsAPI,
     });
-    console.log("admin products", data)
+
     const { mutate: remove } = useMutation({
         mutationFn: deleteProductAPI,
         onSuccess: () => {
@@ -38,14 +39,14 @@ const AdminProductsTable = () => {
         []
     );
 
-    if (isLoading) return <p className="p-6">Loading products...</p>;
+    if (isLoading) return <SkeletonTable columns={columns} rows={10} />;
     if (isError) return <p className="p-6 text-red-500">{error?.message}</p>;
 
     return (
         <div className="p-6 space-y-6">
             <h1 className="text-2xl font-semibold">All Products</h1>
 
-            <DataTable columns={columns} data={data?.products || []} />
+            <DataTable columns={columns} data={data?.products || []} placeholder="Serach Products..." />
         </div>
     );
 };
