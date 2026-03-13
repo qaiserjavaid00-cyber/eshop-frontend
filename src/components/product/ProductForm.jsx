@@ -233,7 +233,7 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
         mutate(fd);
     };
 
-    console.log("Initial variants", mergedVariants);
+    // console.log("Initial variants", mergedVariants);
 
     return (
         <div className="p-10 max-w-5xl mx-auto">
@@ -284,7 +284,6 @@ export const ProductForm = ({ mode, initialData = null, initialVariants = [] }) 
                 <CategorySelector
                     register={register}
                     setValue={setValue}
-                    watch={watch}
                     initialCategory={initialData?.category?._id}
                     initialSub={initialData?.sub?._id}
                 />

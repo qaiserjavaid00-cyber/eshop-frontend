@@ -2,23 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useCategories } from "@/hooks/categories/useCategories";
 import { useSubcategories } from "@/hooks/categories/useSubCategories";
 
-export const CategorySelector = ({ register, setValue, watch, initialCategory, initialSub }) => {
+export const CategorySelector = ({ register, setValue, initialCategory, initialSub }) => {
     const [parentId, setParentId] = useState(initialCategory || "");
 
     const { categories, isLoading: catsLoading } = useCategories();
     const { subcategories, isLoading: subLoading } = useSubcategories(parentId);
 
-    // Initialize form values on edit
+    // Set parent category on mount
     useEffect(() => {
         if (initialCategory) {
             setParentId(initialCategory);
             setValue("category", initialCategory);
-
-            if (initialSub) {
-                setValue("sub", initialSub);
-            }
         }
-    }, [initialCategory, initialSub, setValue]);
+    }, [initialCategory, setValue]);
+
+    // Set subcategory **after subcategories have loaded**
+    useEffect(() => {
+        if (initialSub && subcategories.find(s => s._id === initialSub)) {
+            setValue("sub", initialSub);
+        }
+    }, [initialSub, subcategories, setValue]);
 
     const handleCategoryChange = (e) => {
         const selected = e.target.value;
@@ -53,7 +56,7 @@ export const CategorySelector = ({ register, setValue, watch, initialCategory, i
                 ) : subcategories.length > 0 ? (
                     <select
                         {...register("sub")}
-                        value={watch("sub") || ""}
+                        // value={watch("sub") || ""}
                         className="border p-2 w-full"
                     >
                         <option value="">Select Subcategory</option>
