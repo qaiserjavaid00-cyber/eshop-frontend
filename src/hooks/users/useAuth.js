@@ -5,8 +5,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-const BASE_URL = "http://localhost:8000";
-// const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
+//const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://eshop-backend-production-edc1.up.railway.app";
 
 export const useCheckAuth = () => {
     // const dispatch = useDispatch();

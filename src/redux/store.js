@@ -7,8 +7,9 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
 
 const persistConfig = {
-    key: 'cart',
+    key: 'root',
     storage,
+ whitelist: ['cart', 'user'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
