@@ -49,10 +49,20 @@ Admin Views
 
 ## 🧠 Key Highlights
 
-- Clean and responsive UI
-- Secure authentication flow
-- Connected with REST APIs
-- Handles real-world eCommerce flows
+- JWT for stateless authentication and secure role-based access  
+- React Query for efficient API caching and state management  
+- Tailwind CSS for responsive, mobile-friendly UI  
+- Clean and modular code structure (frontend & backend separation)  
+- Complete order lifecycle handling with admin analytics  
+
+---
+
+## 👨‍💻 About Project
+
+This is a production-style full-stack eCommerce platform built with React, Next.js, Node.js, Express, and MongoDB. 
+It simulates a real-world shopping experience including authentication, product browsing, cart management, checkout with Stripe payments, and a comprehensive admin dashboard.  
+
+Key technical decisions include JWT for secure authentication, React Query for optimized API data handling, and Tailwind CSS for fast, responsive design.  
 
 ---
 
