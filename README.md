@@ -22,7 +22,7 @@ password: pass1234
 - Add to cart & checkout
 - Stripe payment integration Refunds and partail Refunds with Webook
 - Order history tracking
-- Admin dashboard integration with CMS features and Stats/charts
+- Admin dashboard integration with CMS features and Stats/Charts
 
 ---
 
@@ -37,9 +37,15 @@ password: pass1234
 
 ## 📸 Screenshots
 
-
-
----
+Admin Views
+![Product update-create](./admin-product-1.png)
+![Product](./admin-product-2.png)
+![Product](./admin-product-3.png)
+![Update Order](./admin-order.png)
+![Analytics](./admin-stats-1.png)
+![Analytics](./admin-stats-2.png)
+![Analytics](./admin-stats-3.png)
+![Analytics](./admin-stats-4.png)---
 
 ## 🧠 Key Highlights
 
