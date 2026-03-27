@@ -20,7 +20,7 @@ password: pass1234
 - JWT Authentication (Login / Register) Cookie Based
 - Products and Product Variants browsing, search, filter & pagination
 - Add to cart & checkout
-- Stripe payment integration Refunds and partail Refunds with Webook
+- Stripe payment integration Refunds and Partial Refunds with Stripe Webook
 - Order history tracking
 - Admin dashboard integration with CMS features and Stats/Charts
 
