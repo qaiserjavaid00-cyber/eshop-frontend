@@ -29,7 +29,7 @@ password: pass1234
 ## 🛠 Tech Stack
 
 - React (Vite)
-- Tailwind CSS
+- Tailwind CSS / Shadcn
 - Tanstack/React Query and Axios
 - Redux / Redux Persist
 
