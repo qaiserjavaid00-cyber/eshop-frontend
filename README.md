@@ -1,4 +1,3 @@
-🛒 E-Commerce Platform (Frontend)
 🛒 Full-Stack E-Commerce Platform (Production-Style)
 
 A scalable eCommerce application simulating a real-world shopping system with authentication, payments, and admin analytics.
