@@ -3,8 +3,6 @@
 A scalable eCommerce application simulating a real-world shopping system with authentication, payments, and admin analytics.
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Explore%20Now-brightgreen?style=for-the-badge)](https://eshop-frontend-69ze.vercel.app)
-🔗 Live Demo
-https://eshop-frontend-69ze.vercel.app
 
 ## 🔐 Demo Access
 
