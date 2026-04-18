@@ -1,4 +1,16 @@
-# 🛒 E-Commerce Platform (Frontend)
+🛒 Full-Stack E-Commerce Platform (Production-Style)
+
+A scalable eCommerce application simulating a real-world shopping system with authentication, payments, and admin analytics.
+
+🔗 Live Demo:
+https://eshop-frontend-69ze.vercel.app
+
+💡 Key Capabilities:
+- Secure JWT-based authentication with role-based access (Admin/User)
+- Full product lifecycle management (CRUD + variants)
+- Stripe payment integration with webhook handling (refunds & partial refunds)
+- Optimized data fetching using React Query (caching & background updates)
+- Admin dashboard with analytics and order tracking
 
 ## 🔗 Live Demo
 https://eshop-frontend-69ze.vercel.app
