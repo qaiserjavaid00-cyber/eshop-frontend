@@ -15,7 +15,20 @@ email: jon@gmail.com
 password: pass1234  
 
 ---
+---
 
+## 🎯 Why This Project Matters
+
+> This project highlights my ability to build a **production-ready full-stack system**, not just UI components.
+
+### 🚧 Key Challenges Solved
+
+- ⚡ Efficient global state management using **Redux + React Query**
+- 💳 Handling **asynchronous Stripe payment flows** with webhooks (including refunds)
+- 🔗 Designing **scalable frontend ↔ backend communication**
+- 🧩 Maintaining **clean architecture and separation of concerns**
+
+---
 ## 🚀 Features
 
 - JWT Authentication (Login / Register) Cookie Based
