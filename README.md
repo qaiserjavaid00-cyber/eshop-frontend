@@ -1,4 +1,4 @@
-🛒 Full-Stack E-Commerce Platform (Production-Style)
+# 🛒 Scalable Full-Stack E-Commerce Platform with Stripe & Admin Dashboard
 
 A scalable eCommerce application simulating a real-world shopping system with authentication, payments, and admin analytics.
 
