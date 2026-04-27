@@ -24,7 +24,7 @@ password: pass1234
 ### 🚧 Key Challenges Solved
 
 - ⚡ Efficient global state management using **Redux + React Query**
-- 💳 Handling **asynchronous Stripe payment flows** with webhooks (including refunds)
+- 💳 Handling **asynchronous Stripe payment flows** with webhooks (including refunds & partial refunds)
 - 🔗 Designing **scalable frontend ↔ backend communication**
 - 🧩 Maintaining **clean architecture and separation of concerns**
 
