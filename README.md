@@ -6,9 +6,6 @@ A scalable eCommerce application simulating a real-world shopping system with au
 
 ## 🔐 Demo Access
 
-Admin:
-email: admin@gmail.com  
-password: pass1234 
 
 User:
 email: jon@gmail.com  
